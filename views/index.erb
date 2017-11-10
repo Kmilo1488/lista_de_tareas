@@ -1,0 +1,60 @@
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Tareas</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+	</head>
+	<body >
+			<div class="container">
+	    	<div>
+					<h1 class="text-center" >Tareas</h1>
+				</div>
+					<div class="row">
+						<form class="col-md-6 col-md-offset-3" action="/" method="post">
+							<div class="form-group">
+		         		<input type="text" id="tarea" name="verbo" class="form-control" placeholder="Escriba aqui su tarea"/>
+		        	</div>
+							<div class=text-right"">
+								<button type="submit"  class="btn btn-primary">Crear Tarea</button></br>
+							</div>
+
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">Tarea</th>
+										<th scope="col">Estado</th>										
+										<th scope="col">Accion</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<% @tareas.each do |tarea| %>
+									<tr>
+										<td><%= tarea["title"] %></td>
+										<td>
+											<%if tarea["done"]==true %>
+											Completa
+											<%else %>
+											Incompleta
+											<%end%>
+										</td>
+										<td>
+											<%if !tarea["done"] %>
+											<a class="btn btn-success" href="/completar/<%=tarea["id"]%>" role="button">Completar</a>
+											<%end%>
+											<a class="btn btn-danger" href="/eliminar/<%=tarea["id"]%>" role="button">Eliminar</a>
+										</td>
+									</tr>
+									<% end %>
+								</tbody>
+							</table>
+
+						</form>
+
+			</div>
+
+	</body>
+	</html>
